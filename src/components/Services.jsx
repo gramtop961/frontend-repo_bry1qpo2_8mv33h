@@ -1,5 +1,6 @@
 import React from 'react';
 import { Code, Bot, Database, Shield } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const services = [
   {
@@ -27,18 +28,28 @@ const services = [
 export default function Services() {
   return (
     <section id="services" className="relative mx-auto max-w-7xl px-6 py-20">
-      <div className="mb-10">
+      <motion.div
+        className="mb-10"
+        initial={{ opacity: 0, y: 10 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.4 }}
+        transition={{ duration: 0.5 }}
+      >
         <h2 className="text-2xl font-semibold tracking-tight md:text-3xl">What we do</h2>
         <p className="mt-2 max-w-2xl text-white/70">
           End-to-end delivery — from strategy and UX to engineering and AI enablement.
         </p>
-      </div>
+      </motion.div>
 
       <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-        {services.map(({ icon: Icon, title, desc }) => (
-          <div
+        {services.map(({ icon: Icon, title, desc }, i) => (
+          <motion.div
             key={title}
             className="group relative overflow-hidden rounded-2xl border border-white/10 bg-neutral-900/40 p-5 transition hover:border-white/20 hover:bg-neutral-900/60"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.45, delay: i * 0.06 }}
           >
             <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-tr from-fuchsia-500/20 to-sky-400/20 ring-1 ring-inset ring-white/10">
               <Icon className="h-6 w-6 text-white" />
@@ -46,11 +57,17 @@ export default function Services() {
             <h3 className="mt-4 text-lg font-semibold">{title}</h3>
             <p className="mt-2 text-sm leading-relaxed text-white/70">{desc}</p>
             <div className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full bg-[radial-gradient(circle,_rgba(99,102,241,0.15),_transparent_60%)]" />
-          </div>
+          </motion.div>
         ))}
       </div>
 
-      <div className="mt-12 rounded-2xl border border-white/10 bg-gradient-to-tr from-fuchsia-500/10 via-purple-500/10 to-sky-400/10 p-6 text-center">
+      <motion.div
+        className="mt-12 rounded-2xl border border-white/10 bg-gradient-to-tr from-fuchsia-500/10 via-purple-500/10 to-sky-400/10 p-6 text-center"
+        initial={{ opacity: 0, y: 10 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.4 }}
+        transition={{ duration: 0.45, delay: 0.1 }}
+      >
         <p className="text-white/80">
           Not sure where to start? We’ll map your highest ROI opportunities across web and AI in a free discovery call.
         </p>
@@ -60,7 +77,7 @@ export default function Services() {
         >
           Claim your roadmap
         </a>
-      </div>
+      </motion.div>
     </section>
   );
 }
